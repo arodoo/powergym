@@ -1,6 +1,7 @@
 package com.utcv.powergym.powergym;
 
 import com.utcv.powergym.powergym.dao.*;
+import com.utcv.powergym.powergym.entity.ClientHasPlan;
 import com.utcv.powergym.powergym.utility.OperationUtility;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -28,10 +29,19 @@ public class PowergymApplication implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
 
-        OperationUtility.userOperations(userDao);
-        OperationUtility.roleOperations(roleDao);
-        OperationUtility.planOperations(planDao);
-        OperationUtility.assignRolesToUsers(userDao, roleDao);
+//        OperationUtility.userOperations(userDao);
+//        OperationUtility.roleOperations(roleDao);
+//        OperationUtility.planOperations(planDao);
+//        OperationUtility.assignRolesToUsers(userDao, roleDao);
 		OperationUtility.clientOperations(clientDao, planDao, userDao);
+
+//        ClientHasPlan clientHasPlan = new ClientHasPlan();
+//        clientHasPlan.setClient(clientDao.findById(1L).orElseThrow(() -> new Exception("Client not found")));
+//        clientHasPlan.setPlan(planDao.findById(1L).orElseThrow(() -> new Exception("Plan not found")));
+//        clientHasPlan.setUser(userDao.findById(1L).orElseThrow(() -> new Exception("User not found")));
+//        clientHasPlan.setStartDate(new java.sql.Date(new java.util.Date().getTime()));
+//        clientHasPlan.setEndDate(new java.sql.Date(new java.util.Date().getTime()));
+//        clientHasPlanDao.save(clientHasPlan);
+
     }
 }

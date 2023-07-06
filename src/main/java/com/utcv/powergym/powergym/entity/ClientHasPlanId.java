@@ -29,19 +29,4 @@ public class ClientHasPlanId implements Serializable {
         return Objects.hash(client, plan);
     }
 
-    public Long getClient() {
-        return client;
-    }
-
-    public void setClient(Long client) {
-        this.client = client;
-    }
-
-    public Long getPlan() {
-        return plan;
-    }
-
-    public void setPlan(Long plan) {
-        this.plan = plan;
-    }
 }

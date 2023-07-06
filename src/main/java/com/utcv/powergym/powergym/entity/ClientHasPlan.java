@@ -9,21 +9,18 @@ import java.util.Objects;
 @IdClass(ClientHasPlanId.class)
 public class ClientHasPlan {
 
-
-@Id
-////    @GeneratedValue(strategy = GenerationType.IDENTITY)
-//    @Column(name = "contract_id")
-    private int contractId;
-
     // Relación de muchos a uno con clients
+    @Id
     @ManyToOne
     @JoinColumn(name = "client_id")
     private Client client;
 
     // Relación de muchos a uno con plans
+    @Id
     @ManyToOne
     @JoinColumn(name = "plan_id")
     private Plan plan;
+
 
     // Relación de muchos a uno con users
     @ManyToOne

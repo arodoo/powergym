@@ -37,7 +37,7 @@ public class OperationUtility {
     }
 
     public static void clientOperations(ClientDao clientDao, PlanDao planDao, UserDao userDao) {
-    createClient(clientDao);
+   // createClient(clientDao);
 //        fetchClients(clientDao);
 //        updateClient(clientDao);
 //        deleteClient(clientDao);
@@ -67,13 +67,15 @@ public class OperationUtility {
         planDao.save(plan2);
     }
 
+
     private static void assignPlanToClient(ClientDao clientDao, PlanDao planDao, UserDao userDao) {
         Client client = clientDao.findById(2L).orElseThrow(() -> new EntityNotFoundException("Client not found"));
         Plan plan = planDao.findByPlanName("Plan 1");
         User user = userDao.findById(1L).orElseThrow(() -> new EntityNotFoundException("User not found"));
         client.assignPlanToClient(plan, user);
-        clientDao.save(client);
         System.out.println(client);
+        clientDao.save(client);
+
     }
 
 
