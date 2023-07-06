@@ -6,11 +6,13 @@ import java.util.Objects;
 
 @Entity
 @Table(name = "client_has_plan")
+@IdClass(ClientHasPlanId.class)
 public class ClientHasPlan {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "contract_id")
+
+@Id
+////    @GeneratedValue(strategy = GenerationType.IDENTITY)
+//    @Column(name = "contract_id")
     private int contractId;
 
     // Relación de muchos a uno con clients
@@ -37,6 +39,9 @@ public class ClientHasPlan {
     @Column(name = "end_date")
     private Date endDate;
 
+
+
+
     public ClientHasPlan() {
     }
 
@@ -52,7 +57,6 @@ public class ClientHasPlan {
     @Override
     public String toString() {
         return "ClientHasPlan{" +
-                "contractId=" + contractId +
                 ", client=" + client +
                 ", plan=" + plan +
                 ", user=" + user +
@@ -65,22 +69,14 @@ public class ClientHasPlan {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof ClientHasPlan)) return false;
+        if (o == null || getClass() != o.getClass()) return false;
         ClientHasPlan that = (ClientHasPlan) o;
-        return contractId == that.contractId && Objects.equals(client, that.client) && Objects.equals(plan, that.plan) && Objects.equals(user, that.user) && Objects.equals(contractDate, that.contractDate) && Objects.equals(startDate, that.startDate) && Objects.equals(endDate, that.endDate);
+        return Objects.equals(client, that.client) && Objects.equals(plan, that.plan);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(contractId, client, plan, user, contractDate, startDate, endDate);
-    }
-
-    public int getContractId() {
-        return contractId;
-    }
-
-    public void setContractId(int contractId) {
-        this.contractId = contractId;
+        return Objects.hash(client, plan);
     }
 
     public Client getClient() {
@@ -130,5 +126,6 @@ public class ClientHasPlan {
     public void setEndDate(Date endDate) {
         this.endDate = endDate;
     }
+
 }
 

@@ -13,7 +13,7 @@ public class Plan {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "plan_id")
-    private int planId;
+    private Long planId;
 
     @Basic
     @Column(name = "plan_name", nullable = false, length = 45)
@@ -64,11 +64,11 @@ public class Plan {
                 '}';
     }
 
-    public int getPlanId() {
+    public Long getPlanId() {
         return planId;
     }
 
-    public void setPlanId(int planId) {
+    public void setPlanId(Long planId) {
         this.planId = planId;
     }
 
