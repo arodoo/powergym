@@ -23,7 +23,8 @@ public class Client {
 
     @Basic
     @Column(name = "last_name", nullable = false, length = 45)
-    private String lastname;
+    private String lastName;
+
 
     @Basic
     @Column(name = "email", nullable = false, length = 45)
@@ -81,9 +82,9 @@ public class Client {
     public Client() {
     }
 
-    public Client(String firstName, String lastname, String email, String phoneNumber, String emergencyPhoneNumber, Date birthday, Gender gender, boolean isActive, String streetAddress, String addressNumber, String colony, String city, String state, String zipCode) {
+    public Client(String firstName, String lastName, String email, String phoneNumber, String emergencyPhoneNumber, Date birthday, Gender gender, boolean isActive, String streetAddress, String addressNumber, String colony, String city, String state, String zipCode) {
         this.firstName = firstName;
-        this.lastname = lastname;
+        this.lastName = lastName;
         this.email = email;
         this.phoneNumber = phoneNumber;
         this.emergencyPhoneNumber = emergencyPhoneNumber;
@@ -98,8 +99,34 @@ public class Client {
         this.zipCode = zipCode;
     }
 
+    @Override
+    public String toString() {
+        return "Client{" +
+                "clientId=" + clientId +
+                ", firstName='" + firstName + '\'' +
+                ", lastname='" + lastName + '\'' +
+                ", email='" + email + '\'' +
+                ", phoneNumber='" + phoneNumber + '\'' +
+                ", emergencyPhoneNumber='" + emergencyPhoneNumber + '\'' +
+                ", birthday=" + birthday +
+                ", gender=" + gender +
+                ", isActive=" + isActive +
+                ", streetAddress='" + streetAddress + '\'' +
+                ", addressNumber='" + addressNumber + '\'' +
+                ", colony='" + colony + '\'' +
+                ", city='" + city + '\'' +
+                ", state='" + state + '\'' +
+                ", zipCode='" + zipCode + '\'' +
+                '}';
+    }
 
-    //
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Client)) return false;
+        Client client = (Client) o;
+        return isActive == client.isActive && Objects.equals(clientId, client.clientId) && Objects.equals(firstName, client.firstName) && Objects.equals(lastName, client.lastName) && Objects.equals(email, client.email) && Objects.equals(phoneNumber, client.phoneNumber) && Objects.equals(emergencyPhoneNumber, client.emergencyPhoneNumber) && Objects.equals(birthday, client.birthday) && gender == client.gender && Objects.equals(streetAddress, client.streetAddress) && Objects.equals(addressNumber, client.addressNumber) && Objects.equals(colony, client.colony) && Objects.equals(city, client.city) && Objects.equals(state, client.state) && Objects.equals(zipCode, client.zipCode) && Objects.equals(clientPlans, client.clientPlans);
+    }
 
     @Transactional
     public void assignPlanToClient(Plan plan, User user) {
@@ -128,35 +155,6 @@ public class Client {
         plan.getClientPlans().add(clientHasPlan);
     }
 
-    @Override
-    public String toString() {
-        return "Client{" +
-                "clientId=" + clientId +
-                ", firstName='" + firstName + '\'' +
-                ", lastname='" + lastname + '\'' +
-                ", email='" + email + '\'' +
-                ", phoneNumber='" + phoneNumber + '\'' +
-                ", emergencyPhoneNumber='" + emergencyPhoneNumber + '\'' +
-                ", birthday=" + birthday +
-                ", gender=" + gender +
-                ", isActive=" + isActive +
-                ", streetAddress='" + streetAddress + '\'' +
-                ", addressNumber='" + addressNumber + '\'' +
-                ", colony='" + colony + '\'' +
-                ", city='" + city + '\'' +
-                ", state='" + state + '\'' +
-                ", zipCode='" + zipCode + '\'' +
-                '}';
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Client)) return false;
-        Client client = (Client) o;
-        return isActive == client.isActive && Objects.equals(clientId, client.clientId) && Objects.equals(firstName, client.firstName) && Objects.equals(lastname, client.lastname) && Objects.equals(email, client.email) && Objects.equals(phoneNumber, client.phoneNumber) && Objects.equals(emergencyPhoneNumber, client.emergencyPhoneNumber) && Objects.equals(birthday, client.birthday) && gender == client.gender && Objects.equals(streetAddress, client.streetAddress) && Objects.equals(addressNumber, client.addressNumber) && Objects.equals(colony, client.colony) && Objects.equals(city, client.city) && Objects.equals(state, client.state) && Objects.equals(zipCode, client.zipCode) && Objects.equals(clientPlans, client.clientPlans);
-    }
-
     public Long getClientId() {
         return clientId;
     }
@@ -174,11 +172,11 @@ public class Client {
     }
 
     public String getLastname() {
-        return lastname;
+        return lastName;
     }
 
     public void setLastname(String lastname) {
-        this.lastname = lastname;
+        this.lastName = lastname;
     }
 
     public String getEmail() {

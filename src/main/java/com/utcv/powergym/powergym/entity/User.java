@@ -2,6 +2,7 @@ package com.utcv.powergym.powergym.entity;
 
 import javax.persistence.*;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
@@ -30,6 +31,9 @@ public class User {
             inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> roles = new HashSet<>();
 
+    // Relación de uno a muchos con ClientHasPlan
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private List<ClientHasPlan> clientPlans;
     public User() {
     }
 
@@ -106,5 +110,12 @@ public class User {
         this.roles = roles;
     }
 
+    // Getters y setters para la lista de ClientHasPlan
+    public List<ClientHasPlan> getClientPlans() {
+        return clientPlans;
+    }
 
+    public void setClientPlans(List<ClientHasPlan> clientPlans) {
+        this.clientPlans = clientPlans;
+    }
 }

@@ -4,4 +4,8 @@ import com.utcv.powergym.powergym.entity.Client;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface ClientDao extends JpaRepository<Client, Long> {
+
+    Client findByClientId(Long clientId);
+
+    Client findByLastName(String clientName);
 }

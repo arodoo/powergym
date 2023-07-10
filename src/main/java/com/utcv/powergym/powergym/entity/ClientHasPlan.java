@@ -1,22 +1,27 @@
 package com.utcv.powergym.powergym.entity;
 
 import javax.persistence.*;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.Objects;
 
 @Entity
 @Table(name = "client_has_plan")
-@IdClass(ClientHasPlanId.class)
 public class ClientHasPlan {
 
-    // Relación de muchos a uno con clients
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "contract_id")
+    private int contractId;
+
+    // Relación de muchos a uno con clients
+
     @ManyToOne
     @JoinColumn(name = "client_id")
     private Client client;
 
     // Relación de muchos a uno con plans
-    @Id
+
     @ManyToOne
     @JoinColumn(name = "plan_id")
     private Plan plan;
@@ -36,8 +41,8 @@ public class ClientHasPlan {
     @Column(name = "end_date")
     private Date endDate;
 
-
-
+    @Column(name = "is_active")
+    private boolean isActive;
 
     public ClientHasPlan() {
     }
@@ -48,6 +53,32 @@ public class ClientHasPlan {
         this.user = user;
         this.contractDate = contractDate;
         this.startDate = startDate;
+        this.endDate = endDate;
+        this.isActive = true;
+    }
+
+    public boolean isPlanActive() {
+        Date currentDate = new Date();
+        return currentDate.compareTo(endDate) <= 0;
+    }
+
+    public void updatePlanStatus() {
+        this.isActive = isPlanActive();
+    }
+
+    public void assignPlanToClient(Plan plan, User user, Client client) {
+        this.plan = plan;
+        this.user = user;
+        this.client = client;
+        this.contractDate = new Date();
+        this.startDate = new Date();
+        Date currentDate = new Date();
+
+        Calendar calendar  = Calendar.getInstance();
+        calendar.setTime(currentDate);
+        calendar.add(Calendar.DAY_OF_MONTH, plan.getNumDays());
+        Date endDate = calendar.getTime();
+
         this.endDate = endDate;
     }
 
