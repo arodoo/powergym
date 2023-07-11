@@ -1,5 +1,7 @@
 package com.utcv.powergym.powergym.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.*;
 import java.util.Calendar;
 import java.util.Date;
@@ -12,24 +14,27 @@ public class ClientHasPlan {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "contract_id")
-    private int contractId;
+    private Long contractId;
 
     // Relación de muchos a uno con clients
 
     @ManyToOne
     @JoinColumn(name = "client_id")
+    @JsonBackReference
     private Client client;
 
     // Relación de muchos a uno con plans
 
     @ManyToOne
     @JoinColumn(name = "plan_id")
+    @JsonBackReference
     private Plan plan;
 
 
     // Relación de muchos a uno con users
     @ManyToOne
     @JoinColumn(name = "user_id")
+    @JsonBackReference
     private User user;
 
     @Column(name = "contract_date")
@@ -155,5 +160,20 @@ public class ClientHasPlan {
         this.endDate = endDate;
     }
 
+    public Long getContractId() {
+        return contractId;
+    }
+
+    public void setContractId(Long contractId) {
+        this.contractId = contractId;
+    }
+
+    public boolean isActive() {
+        return isActive;
+    }
+
+    public void setActive(boolean active) {
+        isActive = active;
+    }
 }
 

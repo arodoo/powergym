@@ -1,5 +1,7 @@
 package com.utcv.powergym.powergym.entity;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
 import java.util.Date;
 import java.util.HashSet;
@@ -32,6 +34,7 @@ public class Plan {
     private String description;
 
     @OneToMany(mappedBy = "plan", fetch = FetchType.EAGER)
+    @JsonManagedReference
     private Set<ClientHasPlan> clientPlans = new HashSet<>();
 
     public Plan() {

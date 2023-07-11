@@ -25,12 +25,12 @@ public class ClientServiceImpl implements ClientService {
 
     @Override
     public Client loadClientById(Long clientId) {
-        return clientDao.findById(clientId).orElseThrow(()-> new EntityNotFoundException("Client with ID" + clientId + "not found"));
+        return clientDao.findById(clientId).orElseThrow(() -> new EntityNotFoundException("Client with ID" + clientId + "not found"));
     }
 
     @Override
-    public Client loadClientByClientName(String clientName) {
-        return null;
+    public Client loadClientByClientLastName(String clientLastName) {
+        return (clientDao.findByLastName(clientLastName));
     }
 
     @Override

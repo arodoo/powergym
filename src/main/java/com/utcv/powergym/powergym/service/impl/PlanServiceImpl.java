@@ -28,6 +28,11 @@ public class PlanServiceImpl implements PlanService {
     }
 
     @Override
+    public Plan loadPlanByPlanName(String planName) {
+        return planDao.findByPlanName(planName);
+    }
+
+    @Override
     public PlanDTO createPlan(PlanDTO planDTO) {
         Plan plan = planMapper.fromPlanDTO(planDTO);
         planDao.save(plan);

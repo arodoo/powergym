@@ -18,10 +18,8 @@ public class ClientHasPlanDTO {
 
     private Date endDate;
 
-    private String isActive;
+    private boolean isActive;
 
-    public ClientHasPlanDTO() {
-    }
 
     public Long getContractId() {
         return contractId;
@@ -79,11 +77,11 @@ public class ClientHasPlanDTO {
         this.endDate = endDate;
     }
 
-    public String getIsActive() {
+    public boolean getIsActive() {
         return isActive;
     }
 
-    public void setIsActive(String isActive) {
+    public void setIsActive(boolean isActive) {
         this.isActive = isActive;
     }
 }

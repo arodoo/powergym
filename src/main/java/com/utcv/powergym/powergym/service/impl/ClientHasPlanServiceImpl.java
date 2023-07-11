@@ -18,12 +18,15 @@ public class ClientHasPlanServiceImpl implements ClientHasPlanService {
 
     private ClientHasPlanDao clientHasPlanDao;
 
-    public ClientHasPlanServiceImpl(ClientHasPlanMapper clientHasPlanMapper) {
+    public ClientHasPlanServiceImpl(ClientHasPlanMapper clientHasPlanMapper, ClientHasPlanDao clientHasPlanDao) {
         this.clientHasPlanMapper = clientHasPlanMapper;
+        this.clientHasPlanDao = clientHasPlanDao;
     }
+
     @Override
     public ClientHasPlan addPlanToClient(ClientHasPlanDTO clientHasPlanDTO) {
-        ClientHasPlan clientHasPlan = clientHasPlanMapper.fromClientHasPlanDTO(clientHasPlanDTO);
+        ClientHasPlan clientHasPlan = new ClientHasPlan();
+        clientHasPlan = clientHasPlanMapper.fromClientHasPlanDTO(clientHasPlanDTO);
         clientHasPlanDao.save(clientHasPlan);
         return clientHasPlan;
     }

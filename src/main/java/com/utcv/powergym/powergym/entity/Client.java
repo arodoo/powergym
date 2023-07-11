@@ -1,5 +1,7 @@
 package com.utcv.powergym.powergym.entity;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
 import javax.transaction.Transactional;
 import java.util.*;
@@ -77,6 +79,7 @@ public class Client {
     private String zipCode;
 
     @OneToMany(mappedBy = "client", fetch = FetchType.EAGER)
+    @JsonManagedReference
     private Set<ClientHasPlan> clientPlans = new HashSet<>();
 
     public Client() {

@@ -39,24 +39,6 @@ public class ClientDTO {
     public ClientDTO() {
     }
 
-    public ClientDTO(Long clientId, String firstName, String lastname, String email, String phoneNumber, String emergencyPhoneNumber, Date birthday, Client.Gender gender, boolean isActive, String streetAddress, String addressNumber, String colony, String city, String state, String zipCode) {
-        this.clientId = clientId;
-        this.firstName = firstName;
-        this.lastName = lastname;
-        this.email = email;
-        this.phoneNumber = phoneNumber;
-        this.emergencyPhoneNumber = emergencyPhoneNumber;
-        this.birthday = birthday;
-        this.gender = gender;
-        this.isActive = isActive;
-        this.streetAddress = streetAddress;
-        this.addressNumber = addressNumber;
-        this.colony = colony;
-        this.city = city;
-        this.state = state;
-        this.zipCode = zipCode;
-    }
-
     //getters and setters
 
 

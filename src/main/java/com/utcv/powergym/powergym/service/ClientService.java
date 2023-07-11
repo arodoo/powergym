@@ -7,7 +7,7 @@ public interface ClientService {
 
     Client loadClientById(Long clientId);
 
-    Client loadClientByClientName(String clientName);
+    Client loadClientByClientLastName(String clientLastName);
 
     ClientDTO createClient(ClientDTO clientDTO);
 

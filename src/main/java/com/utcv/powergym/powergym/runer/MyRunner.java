@@ -3,8 +3,13 @@ package com.utcv.powergym.powergym.runer;
 import com.utcv.powergym.powergym.dto.ClientDTO;
 import com.utcv.powergym.powergym.dto.ClientHasPlanDTO;
 import com.utcv.powergym.powergym.dto.PlanDTO;
+import com.utcv.powergym.powergym.dto.UserDTO;
 import com.utcv.powergym.powergym.entity.Client;
 import com.utcv.powergym.powergym.entity.Plan;
+import com.utcv.powergym.powergym.entity.User;
+import com.utcv.powergym.powergym.mapper.ClientMapper;
+import com.utcv.powergym.powergym.mapper.PlanMapper;
+import com.utcv.powergym.powergym.mapper.UserMapper;
 import com.utcv.powergym.powergym.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -31,6 +36,15 @@ public class MyRunner implements CommandLineRunner {
     @Autowired
     private ClientHasPlanService clientHasPlanService;
 
+    @Autowired
+    private UserMapper userMapper;
+
+    @Autowired
+    private ClientMapper clientMapper;
+
+    @Autowired
+    private PlanMapper planMapper;
+
     @Override
     public void run(String... args) throws Exception {
         createRoles();
@@ -41,8 +55,29 @@ public class MyRunner implements CommandLineRunner {
     }
 
     private void assignPlanToClient() {
+
+        UserDTO userDTO = new UserDTO();
+        User loadedUser = userService.loadUserByEmail("haro.em@hotmail.com");
+        userDTO = userMapper.fromUser(loadedUser);
+
+        ClientDTO clientDTO = new ClientDTO();
+        Client loadedClient = clientService.loadClientByClientLastName("Lastname1");
+        clientDTO = clientMapper.fromClient(loadedClient);
+
+        PlanDTO planDTO = new PlanDTO();
+        Plan loadedPlan = planService.loadPlanByPlanName("Plan 1");
+        planDTO = planMapper.fromPlan(loadedPlan);
+
         ClientHasPlanDTO clientHasPlanDTO = new ClientHasPlanDTO();
         clientHasPlanDTO.setContractDate(new Date());
+        clientHasPlanDTO.setEndDate(new Date());
+        clientHasPlanDTO.setStartDate(new Date());
+        clientHasPlanDTO.setIsActive(true);
+        clientHasPlanDTO.setClient(clientDTO);
+        clientHasPlanDTO.setPlan(planDTO);
+        clientHasPlanDTO.setUser(userDTO);
+
+        clientHasPlanService.addPlanToClient(clientHasPlanDTO);
     }
 
     private void createPlans() {

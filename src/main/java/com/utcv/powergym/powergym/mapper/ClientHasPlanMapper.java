@@ -21,14 +21,30 @@ public class ClientHasPlanMapper {
     }
 
     public ClientHasPlanDTO fromClientHasPlan(ClientHasPlan clientHasPlan) {
-        ClientHasPlanDTO clientHasPlanDTO = new ClientHasPlanDTO();
-        BeanUtils.copyProperties(clientHasPlan, clientHasPlanDTO);
+        ClientHasPlanDTO clientHasPlanDTO = new ClientHasPlanDTO(); // Copiar solo las propiedades simples de ClientHasPlan
+        clientHasPlanDTO.setContractId(clientHasPlan.getContractId());
+        clientHasPlanDTO.setContractDate(clientHasPlan.getContractDate());
+        clientHasPlanDTO.setStartDate(clientHasPlan.getStartDate());
+        clientHasPlanDTO.setEndDate(clientHasPlan.getEndDate());
+        clientHasPlanDTO.setIsActive(clientHasPlan.isActive()); // Usar los mappers para copiar las propiedades complejas de User, Client y Plan
+        clientHasPlanDTO.setUser(userMapper.fromUser(clientHasPlan.getUser()));
+        clientHasPlanDTO.setClient(clientMapper.fromClient(clientHasPlan.getClient()));
+        clientHasPlanDTO.setPlan(planMapper.fromPlan(clientHasPlan.getPlan()));
         return clientHasPlanDTO;
     }
 
+
     public ClientHasPlan fromClientHasPlanDTO(ClientHasPlanDTO clientHasPlanDTO) {
         ClientHasPlan clientHasPlan = new ClientHasPlan();
-        BeanUtils.copyProperties(clientHasPlanDTO, clientHasPlan);
-        return clientHasPlan;
+        try {
+            BeanUtils.copyProperties(clientHasPlanDTO, clientHasPlan);
+            clientHasPlan.setUser(userMapper.fromUserDTO(clientHasPlanDTO.getUser()));
+            clientHasPlan.setClient(clientMapper.fromClientDTO(clientHasPlanDTO.getClient()));
+            clientHasPlan.setPlan(planMapper.fromPlanDTO(clientHasPlanDTO.getPlan()));
+            return clientHasPlan;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 }

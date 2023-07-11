@@ -7,6 +7,8 @@ public interface PlanService {
 
     Plan loadPlanById(Long planId);
 
+    Plan loadPlanByPlanName(String planName);
+
     PlanDTO createPlan(PlanDTO planDTO);
 
     PlanDTO updatePlan(PlanDTO planDTO);
