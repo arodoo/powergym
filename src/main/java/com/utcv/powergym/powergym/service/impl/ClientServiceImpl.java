@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityNotFoundException;
 import javax.transaction.Transactional;
+import java.util.List;
 
 @Service
 @Transactional
@@ -60,4 +61,16 @@ public class ClientServiceImpl implements ClientService {
         Client client = loadClientById(clientId);
         clientDao.delete(client);
     }
+
+    @Override
+    public List<Client> getAllClients() {
+        return clientDao.findAll();
+    }
+
+    @Override
+    public ClientDTO loadClientDTOByClientLastName(String clientLastName) {
+     return clientMapper.fromClient((clientDao.findByLastName(clientLastName)));
+    }
+
+
 }

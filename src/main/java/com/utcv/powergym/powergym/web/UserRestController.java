@@ -25,7 +25,7 @@ public class UserRestController {
     }
 
     @GetMapping
-    public List<User> getAllUsers(){
+    public List<User> getAllUsers() {
         return userService.getAllUsers();
     }
 
@@ -49,7 +49,7 @@ public class UserRestController {
 
     @DeleteMapping("/{userId}")
     public void deleteUser(@PathVariable Long userId) {
-        userDao.findById(userId).orElseThrow(() -> new EntityNotFoundException("User with id" +userId+ " not found"));
+        userDao.findById(userId).orElseThrow(() -> new EntityNotFoundException("User with id" + userId + " not found"));
         userService.removeUser(userId);
     }
 

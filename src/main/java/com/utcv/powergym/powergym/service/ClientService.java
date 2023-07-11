@@ -3,6 +3,8 @@ package com.utcv.powergym.powergym.service;
 import com.utcv.powergym.powergym.dto.ClientDTO;
 import com.utcv.powergym.powergym.entity.Client;
 
+import java.util.List;
+
 public interface ClientService {
 
     Client loadClientById(Long clientId);
@@ -15,4 +17,7 @@ public interface ClientService {
 
     void removeClient(Long clientId);
 
+    List<Client> getAllClients();
+
+    ClientDTO loadClientDTOByClientLastName(String clientLastName);
 }

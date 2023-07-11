@@ -107,7 +107,7 @@ public class Client {
         return "Client{" +
                 "clientId=" + clientId +
                 ", firstName='" + firstName + '\'' +
-                ", lastname='" + lastName + '\'' +
+                ", lastName='" + lastName + '\'' +
                 ", email='" + email + '\'' +
                 ", phoneNumber='" + phoneNumber + '\'' +
                 ", emergencyPhoneNumber='" + emergencyPhoneNumber + '\'' +
