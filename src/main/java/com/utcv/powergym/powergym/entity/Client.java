@@ -174,11 +174,11 @@ public class Client {
         this.firstName = firstName;
     }
 
-    public String getLastname() {
+    public String getLastName() {
         return lastName;
     }
 
-    public void setLastname(String lastname) {
+    public void setLastName(String lastname) {
         this.lastName = lastname;
     }
 

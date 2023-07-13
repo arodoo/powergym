@@ -20,4 +20,6 @@ public interface ClientService {
     List<Client> getAllClients();
 
     ClientDTO loadClientDTOByClientLastName(String clientLastName);
+
+    List<ClientDTO> getAllClientsDTO();
 }

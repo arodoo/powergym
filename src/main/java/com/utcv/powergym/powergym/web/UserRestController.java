@@ -25,8 +25,8 @@ public class UserRestController {
     }
 
     @GetMapping
-    public List<User> getAllUsers() {
-        return userService.getAllUsers();
+    public List<UserDTO> getAllUsers() {
+        return userService.getAllUsersDTO();
     }
 
     @GetMapping("/find")

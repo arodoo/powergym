@@ -8,6 +8,7 @@ import com.utcv.powergym.powergym.service.ClientHasPlanService;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.List;
 
 @Service
 @Transactional
@@ -24,11 +25,16 @@ public class ClientHasPlanServiceImpl implements ClientHasPlanService {
     }
 
     @Override
-    public ClientHasPlan addPlanToClient(ClientHasPlanDTO clientHasPlanDTO) {
+    public ClientHasPlanDTO addPlanToClient(ClientHasPlanDTO clientHasPlanDTO) {
         ClientHasPlan clientHasPlan = new ClientHasPlan();
         clientHasPlan = clientHasPlanMapper.fromClientHasPlanDTO(clientHasPlanDTO);
         clientHasPlanDao.save(clientHasPlan);
-        return clientHasPlan;
+        return clientHasPlanMapper.fromClientHasPlan(clientHasPlan);
+    }
+
+    @Override
+    public List<ClientHasPlanDTO> getAllClientHasPlansDTO() {
+        return clientHasPlanMapper.fromClientHasPlans(clientHasPlanDao.findAll());
     }
 
 

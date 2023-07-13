@@ -66,6 +66,12 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public List<UserDTO> getAllUsersDTO() {
+        return userMapper.fromUsers(userDao.findAll());
+    }
+
+
+    @Override
     public UserDTO createUser(UserDTO userDTO) {
         User user = new User(userDTO.getUserName(), userDTO.getEmail(), userDTO.getPasswordHash());
         userDao.save(user);

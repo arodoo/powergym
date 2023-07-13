@@ -24,8 +24,8 @@ public class ClientRestController {
     }
 
     @GetMapping
-    public List<Client> getAllClients() {
-        return clientService.getAllClients();
+    public List<ClientDTO> getAllClients() {
+        return clientService.getAllClientsDTO();
     }
 
     @GetMapping("/find")
@@ -34,13 +34,11 @@ public class ClientRestController {
     }
 
     @PostMapping
-    public ClientDTO saveClient(@RequestParam ClientDTO clientDTO) {
-        Client client = clientService.loadClientByClientLastName(clientDTO.getLastname());
-        if (client != null) throw new RuntimeException("User already exists");
+    public ClientDTO saveClient(@RequestBody ClientDTO clientDTO) {
         return clientService.createClient(clientDTO);
     }
 
-    @PutMapping("/clientId")
+    @PutMapping("/{clientId}")
     public ClientDTO updateClient(@RequestBody ClientDTO clientDTO, @PathVariable Long clientId) {
         clientDTO.setClientId(clientId);
         return clientService.updateClient(clientDTO);

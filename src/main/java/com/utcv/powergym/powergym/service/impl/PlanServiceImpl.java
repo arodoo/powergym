@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityNotFoundException;
 import javax.transaction.Transactional;
+import java.util.List;
 
 @Service
 @Transactional
@@ -55,4 +56,21 @@ public class PlanServiceImpl implements PlanService {
     public void removePlan(Long planId) {
         planDao.deleteById(planId);
     }
+
+    @Override
+    public List<Plan> getAllPlans() {
+        return planDao.findAll();
+    }
+
+    @Override
+    public List<PlanDTO> getAllPlansDTO() {
+        return planMapper.fromPlans(planDao.findAll());
+    }
+
+    @Override
+    public PlanDTO loadPlanDTOByPlanName(String planName) {
+        return planMapper.fromPlan(planDao.findByPlanName(planName));
+    }
+
+
 }

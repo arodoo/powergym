@@ -67,9 +67,16 @@ public class ClientServiceImpl implements ClientService {
         return clientDao.findAll();
     }
 
+
+
     @Override
     public ClientDTO loadClientDTOByClientLastName(String clientLastName) {
      return clientMapper.fromClient((clientDao.findByLastName(clientLastName)));
+    }
+
+    @Override
+    public List<ClientDTO> getAllClientsDTO() {
+        return clientMapper.fromClients(clientDao.findAll());
     }
 
 

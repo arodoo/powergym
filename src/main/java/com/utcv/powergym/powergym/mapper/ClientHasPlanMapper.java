@@ -5,6 +5,8 @@ import com.utcv.powergym.powergym.entity.ClientHasPlan;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class ClientHasPlanMapper {
 
@@ -46,5 +48,13 @@ public class ClientHasPlanMapper {
             e.printStackTrace();
         }
         return null;
+    }
+
+    public List<ClientHasPlanDTO> fromClientHasPlans(List<ClientHasPlan> all) {
+        List<ClientHasPlanDTO> clientHasPlanDTOS = new java.util.ArrayList<>();
+        for (ClientHasPlan clientHasPlan : all) {
+            clientHasPlanDTOS.add(fromClientHasPlan(clientHasPlan));
+        }
+        return clientHasPlanDTOS;
     }
 }
