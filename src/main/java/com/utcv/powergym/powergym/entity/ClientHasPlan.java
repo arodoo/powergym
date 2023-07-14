@@ -79,12 +79,14 @@ public class ClientHasPlan {
         this.startDate = new Date();
         Date currentDate = new Date();
 
-        Calendar calendar  = Calendar.getInstance();
+        Calendar calendar = Calendar.getInstance();
         calendar.setTime(currentDate);
         calendar.add(Calendar.DAY_OF_MONTH, plan.getNumDays());
         Date endDate = calendar.getTime();
 
         this.endDate = endDate;
+
+        this.isActive = true;
     }
 
     @Override

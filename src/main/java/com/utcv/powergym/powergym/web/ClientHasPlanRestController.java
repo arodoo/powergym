@@ -5,6 +5,7 @@ import com.utcv.powergym.powergym.dto.ClientHasPlanDTO;
 import com.utcv.powergym.powergym.service.ClientHasPlanService;
 import org.springframework.web.bind.annotation.*;
 
+import javax.persistence.EntityNotFoundException;
 import java.util.List;
 
 @RestController
@@ -29,5 +30,11 @@ public class ClientHasPlanRestController {
     @PostMapping
     public ClientHasPlanDTO addPlanToClient(@RequestBody ClientHasPlanDTO clientHasPlanDTO) {
         return clientHasPlanService.addPlanToClient(clientHasPlanDTO);
+    }
+
+    @DeleteMapping("/{clientHasPlanId}")
+    public void deleteClientHasPlan(@PathVariable Long clientHasPlanId) {
+        clientHasPlanDao.findById(clientHasPlanId).orElseThrow(() -> new EntityNotFoundException("ClientHasPlan with id" + clientHasPlanId + " not found"));
+        clientHasPlanService.removeClientHasPlan(clientHasPlanId);
     }
 }

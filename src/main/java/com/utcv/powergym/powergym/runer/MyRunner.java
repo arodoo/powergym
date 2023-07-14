@@ -70,7 +70,6 @@ public class MyRunner implements CommandLineRunner {
 
         ClientHasPlanDTO clientHasPlanDTO = new ClientHasPlanDTO();
         clientHasPlanDTO.setContractDate(new Date());
-        clientHasPlanDTO.setEndDate(new Date());
         clientHasPlanDTO.setStartDate(new Date());
         clientHasPlanDTO.setIsActive(true);
         clientHasPlanDTO.setClient(clientDTO);
@@ -94,28 +93,27 @@ public class MyRunner implements CommandLineRunner {
     }
 
 
-private void createClients() {
-    for (int i = 0; i < 10; i++) {
-        ClientDTO clientDTO = new ClientDTO();
-        clientDTO.setFirstName("Client" + i);
-        clientDTO.setLastName("Lastname" + i);
-        clientDTO.setEmail("client" + i + "@example.com");
-        clientDTO.setPhoneNumber("1234567890");
-        clientDTO.setBirthday(new Date());
-        clientDTO.setEmergencyPhoneNumber("9876543210");
-        clientDTO.setGender(Client.Gender.M);
-        clientDTO.setActive(true);
-        clientDTO.setStreetAddress("Street " + i);
-        clientDTO.setAddressNumber(String.valueOf(i));
-        clientDTO.setColony("Colony " + i);
-        clientDTO.setCity("City " + i);
-        clientDTO.setState("State " + i);
-        clientDTO.setZipCode("12345" + i);
+    private void createClients() {
+        for (int i = 0; i < 10; i++) {
+            ClientDTO clientDTO = new ClientDTO();
+            clientDTO.setFirstName("Client" + i);
+            clientDTO.setLastName("Lastname" + i);
+            clientDTO.setEmail("client" + i + "@example.com");
+            clientDTO.setPhoneNumber("1234567890");
+            clientDTO.setBirthday(new Date());
+            clientDTO.setEmergencyPhoneNumber("9876543210");
+            clientDTO.setGender(Client.Gender.M);
+            clientDTO.setActive(true);
+            clientDTO.setStreetAddress("Street " + i);
+            clientDTO.setAddressNumber(String.valueOf(i));
+            clientDTO.setColony("Colony " + i);
+            clientDTO.setCity("City " + i);
+            clientDTO.setState("State " + i);
+            clientDTO.setZipCode("12345" + i);
 
-        clientService.createClient(clientDTO);
+            clientService.createClient(clientDTO);
+        }
     }
-}
-
 
 
     private void createAdmin() {
