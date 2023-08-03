@@ -61,7 +61,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<User> getAllUsers(){
+    public List<User> getAllUsers() {
         return userDao.findAll();
     }
 
@@ -93,4 +93,11 @@ public class UserServiceImpl implements UserService {
         User updatedUser = userDao.save(user);
         return userMapper.fromUser(updatedUser);
     }
+
+    @Override
+    public User loadUserById(Long userId) {
+        return userDao.findById(userId).orElseThrow(() -> new RuntimeException("User not found"));
+    }
+
+
 }

@@ -27,8 +27,10 @@ public class ClientHasPlanRestController {
         return clientHasPlanService.getAllClientHasPlansDTO();
     }
 
+
+
     @PostMapping
-    public ClientHasPlanDTO addPlanToClient(@RequestBody ClientHasPlanDTO clientHasPlanDTO) {
+    public ClientHasPlanDTO ClientHasPlanDTO(@RequestBody ClientHasPlanDTO clientHasPlanDTO) {
         return clientHasPlanService.addPlanToClient(clientHasPlanDTO);
     }
 

@@ -2,6 +2,7 @@ package com.utcv.powergym.powergym.service.impl;
 
 import com.utcv.powergym.powergym.dao.ClientDao;
 import com.utcv.powergym.powergym.dto.ClientDTO;
+import com.utcv.powergym.powergym.dto.ClientHasPlanDTO;
 import com.utcv.powergym.powergym.entity.Client;
 import com.utcv.powergym.powergym.mapper.ClientMapper;
 import com.utcv.powergym.powergym.service.ClientService;
@@ -9,6 +10,8 @@ import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityNotFoundException;
 import javax.transaction.Transactional;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 @Service
@@ -18,6 +21,7 @@ public class ClientServiceImpl implements ClientService {
     private ClientDao clientDao;
 
     private ClientMapper clientMapper;
+
 
     public ClientServiceImpl(ClientDao clientDao, ClientMapper clientMapper) {
         this.clientDao = clientDao;
@@ -38,6 +42,7 @@ public class ClientServiceImpl implements ClientService {
     public ClientDTO createClient(ClientDTO clientDTO) {
         Client client = clientMapper.fromClientDTO(clientDTO);
         try {
+            client.setActive(true);
             clientDao.save(client);
         } catch (Exception e) {
             e.printStackTrace();
@@ -68,15 +73,22 @@ public class ClientServiceImpl implements ClientService {
     }
 
 
-
     @Override
     public ClientDTO loadClientDTOByClientLastName(String clientLastName) {
-     return clientMapper.fromClient((clientDao.findByLastName(clientLastName)));
+        return clientMapper.fromClient((clientDao.findByLastName(clientLastName)));
     }
 
     @Override
     public List<ClientDTO> getAllClientsDTO() {
-        return clientMapper.fromClients(clientDao.findAll());
+        //return clientMapper.fromClients(clientDao.findAll());
+        List<ClientDTO> list = clientMapper.fromClients(clientDao.findAll());
+        Collections.sort(list, new Comparator<ClientDTO>() {
+            @Override
+            public int compare(ClientDTO o1, ClientDTO o2) {
+                return o2.getClientId().compareTo(o1.getClientId());
+            }
+        });
+        return list;
     }
 
 

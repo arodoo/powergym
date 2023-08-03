@@ -80,13 +80,13 @@ public class MyRunner implements CommandLineRunner {
     }
 
     private void createPlans() {
-        for (int i = 0; i < 5; i++) {
+        for (int i = 0; i < 20; i++) {
 
             PlanDTO planDTO = new PlanDTO();
             planDTO.setPlanName("Plan " + i);
             planDTO.setPrice((i * 10));
             planDTO.setDescription("Description of plan " + i);
-            planDTO.setNumDays((i + 1));
+            planDTO.setNumDays((30));
 
             planService.createPlan(planDTO);
         }
@@ -94,7 +94,7 @@ public class MyRunner implements CommandLineRunner {
 
 
     private void createClients() {
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < 20; i++) {
             ClientDTO clientDTO = new ClientDTO();
             clientDTO.setFirstName("Client" + i);
             clientDTO.setLastName("Lastname" + i);

@@ -24,4 +24,6 @@ public interface UserService {
     void removeUser(Long userId);
 
     UserDTO updateUser(UserDTO userDTO);
+
+    User loadUserById(Long userId);
 }
