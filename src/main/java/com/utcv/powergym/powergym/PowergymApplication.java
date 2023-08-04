@@ -9,8 +9,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class PowergymApplication {
 
+
     public static void main(String[] args) {
         SpringApplication.run(PowergymApplication.class, args);
+
     }
 
 }

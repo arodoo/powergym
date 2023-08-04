@@ -78,7 +78,7 @@ public class Client {
     @Column(name = "zip_code", nullable = false, length = 10)
     private String zipCode;
 
-    @OneToMany(mappedBy = "client", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "client",cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JsonManagedReference
     private Set<ClientHasPlan> clientPlans = new HashSet<>();
 

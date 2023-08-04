@@ -33,7 +33,7 @@ public class Plan {
     @Column(name = "description", nullable = false, length = 45)
     private String description;
 
-    @OneToMany(mappedBy = "plan", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "plan",cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JsonManagedReference
     private Set<ClientHasPlan> clientPlans = new HashSet<>();
 

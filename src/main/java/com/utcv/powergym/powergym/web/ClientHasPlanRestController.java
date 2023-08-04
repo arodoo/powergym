@@ -39,4 +39,11 @@ public class ClientHasPlanRestController {
         clientHasPlanDao.findById(clientHasPlanId).orElseThrow(() -> new EntityNotFoundException("ClientHasPlan with id" + clientHasPlanId + " not found"));
         clientHasPlanService.removeClientHasPlan(clientHasPlanId);
     }
+
+    @GetMapping("/history/{clientId}")
+    public List<ClientHasPlanDTO> getClientHasPlanHistory(@PathVariable Long clientId) {
+        return clientHasPlanService.findByClientId(clientId);
+        // Usar el método findByClientId del repositorio para obtener la lista de entradas de la tabla client_has_plan para el cliente dado
+        //return clientHasPlanRepository.findByClientId(clientId);
+    }
 }

@@ -95,5 +95,17 @@ public class ClientHasPlanServiceImpl implements ClientHasPlanService {
         clientHasPlanDao.deleteById(clientHasPlanId);
     }
 
+    @Override
+    public List<ClientHasPlanDTO> findByClientId(Long clientId) {
+        List<ClientHasPlanDTO> list = clientHasPlanMapper.fromClientHasPlans(clientHasPlanDao.findByClientId(clientId));
+        Collections.sort(list, new Comparator<ClientHasPlanDTO>() {
+            @Override
+            public int compare(ClientHasPlanDTO o1, ClientHasPlanDTO o2) {
+                return o2.getContractId().compareTo(o1.getContractId());
+            }
+        });
+        return list;
+    }
+
 
 }

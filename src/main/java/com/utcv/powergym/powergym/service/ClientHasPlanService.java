@@ -13,4 +13,6 @@ public interface ClientHasPlanService {
     List<ClientHasPlanDTO> getAllClientHasPlansDTO();
 
     void removeClientHasPlan(Long clientHasPlanId);
+
+    List<ClientHasPlanDTO> findByClientId(Long clientId);
 }

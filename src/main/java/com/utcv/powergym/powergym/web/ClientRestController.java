@@ -28,9 +28,13 @@ public class ClientRestController {
         return clientService.getAllClientsDTO();
     }
 
-    @GetMapping("/find")
-    public ClientDTO getClient(@RequestParam(name = "lastname", defaultValue = "") String lastname) {
-        return clientService.loadClientDTOByClientLastName(lastname);
+//    @GetMapping("/find")
+//    public ClientDTO getClient(@RequestParam(name = "lastname", defaultValue = "") String lastname) {
+//        return clientService.loadClientDTOByClientLastName(lastname);
+//    }
+    @GetMapping("/find/{clientId}")
+    public ClientDTO getClient(@PathVariable Long clientId) {
+        return clientService.loadClientDTOByClientId(clientId);
     }
 
     @PostMapping

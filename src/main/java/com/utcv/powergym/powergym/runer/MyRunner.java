@@ -55,28 +55,32 @@ public class MyRunner implements CommandLineRunner {
     }
 
     private void assignPlanToClient() {
+        for (int i = 0; i < 5; i++) {
 
-        UserDTO userDTO = new UserDTO();
-        User loadedUser = userService.loadUserByEmail("haro.em@hotmail.com");
-        userDTO = userMapper.fromUser(loadedUser);
+            UserDTO userDTO = new UserDTO();
+            User loadedUser = userService.loadUserByEmail("haro.em@hotmail.com");
+            userDTO = userMapper.fromUser(loadedUser);
 
-        ClientDTO clientDTO = new ClientDTO();
-        Client loadedClient = clientService.loadClientByClientLastName("Lastname1");
-        clientDTO = clientMapper.fromClient(loadedClient);
+            ClientDTO clientDTO = new ClientDTO();
+            Client loadedClient = clientService.loadClientByClientLastName("Lastname" + i);
+            clientDTO = clientMapper.fromClient(loadedClient);
 
-        PlanDTO planDTO = new PlanDTO();
-        Plan loadedPlan = planService.loadPlanByPlanName("Plan 1");
-        planDTO = planMapper.fromPlan(loadedPlan);
+            PlanDTO planDTO = new PlanDTO();
+            Plan loadedPlan = planService.loadPlanByPlanName("Plan 1");
+            planDTO = planMapper.fromPlan(loadedPlan);
 
-        ClientHasPlanDTO clientHasPlanDTO = new ClientHasPlanDTO();
-        clientHasPlanDTO.setContractDate(new Date());
-        clientHasPlanDTO.setStartDate(new Date());
-        clientHasPlanDTO.setIsActive(true);
-        clientHasPlanDTO.setClient(clientDTO);
-        clientHasPlanDTO.setPlan(planDTO);
-        clientHasPlanDTO.setUser(userDTO);
+            ClientHasPlanDTO clientHasPlanDTO = new ClientHasPlanDTO();
+            clientHasPlanDTO.setContractDate(new Date());
+            clientHasPlanDTO.setStartDate(new Date());
+            clientHasPlanDTO.setIsActive(true);
+            clientHasPlanDTO.setClient(clientDTO);
+            clientHasPlanDTO.setPlan(planDTO);
+            clientHasPlanDTO.setUser(userDTO);
 
-        clientHasPlanService.addPlanToClient(clientHasPlanDTO);
+            for (int j = 0; j < 20; j++) {
+                clientHasPlanService.addPlanToClient(clientHasPlanDTO);
+            }
+        }
     }
 
     private void createPlans() {
@@ -117,9 +121,12 @@ public class MyRunner implements CommandLineRunner {
 
 
     private void createAdmin() {
+        for (int i = 0; i < 20; i++) {
+            userService.createUser("Arodo", "haro.em@hotmail" + i + ".com", "123456");
+            userService.assignRoleToUser("haro.em@hotmail" + i + ".com", "User");
+        }
         userService.createUser("Arodo", "haro.em@hotmail.com", "123456");
         userService.assignRoleToUser("haro.em@hotmail.com", "Admin");
-
     }
 
     private void createRoles() {

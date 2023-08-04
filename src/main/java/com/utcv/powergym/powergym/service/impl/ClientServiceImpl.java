@@ -91,5 +91,10 @@ public class ClientServiceImpl implements ClientService {
         return list;
     }
 
+    @Override
+    public ClientDTO loadClientDTOByClientId(Long clientId) {
+        return clientMapper.fromClient(loadClientById(clientId));
+    }
+
 
 }
