@@ -47,15 +47,15 @@ public class MyRunner implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        createRoles();
-        createAdmin();
-        createClients();
-        createPlans();
-        assignPlanToClient();
+//        createRoles();
+//        createAdmin();
+//        createClients();
+//        createPlans();
+//        assignPlanToClient();
     }
 
     private void assignPlanToClient() {
-        for (int i = 0; i < 5; i++) {
+        for (int i = 0; i < 20; i++) {
 
             UserDTO userDTO = new UserDTO();
             User loadedUser = userService.loadUserByEmail("haro.em@hotmail.com");
