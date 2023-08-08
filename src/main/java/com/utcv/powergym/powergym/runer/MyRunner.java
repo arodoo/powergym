@@ -1,9 +1,6 @@
 package com.utcv.powergym.powergym.runer;
 
-import com.utcv.powergym.powergym.dto.ClientDTO;
-import com.utcv.powergym.powergym.dto.ClientHasPlanDTO;
-import com.utcv.powergym.powergym.dto.PlanDTO;
-import com.utcv.powergym.powergym.dto.UserDTO;
+import com.utcv.powergym.powergym.dto.*;
 import com.utcv.powergym.powergym.entity.Client;
 import com.utcv.powergym.powergym.entity.Plan;
 import com.utcv.powergym.powergym.entity.User;
@@ -34,6 +31,9 @@ public class MyRunner implements CommandLineRunner {
     private PlanService planService;
 
     @Autowired
+    private EntryService entryService;
+
+    @Autowired
     private ClientHasPlanService clientHasPlanService;
 
     @Autowired
@@ -52,6 +52,19 @@ public class MyRunner implements CommandLineRunner {
 //        createClients();
 //        createPlans();
 //        assignPlanToClient();
+//        addEntries();
+    }
+
+    private void addEntries() {
+        for (int j = 0; j < 5; j++) {
+            for (long i = 1; i < 19; i++) {
+                Client loadedClient = clientService.loadClientById(i);
+                EntryDTO entryDTO = new EntryDTO();
+                entryDTO.setClient(clientMapper.fromClient(loadedClient));
+                entryDTO.setEntryDate(new Date());
+                entryService.addEntryToClient(entryDTO);
+            }
+        }
     }
 
     private void assignPlanToClient() {

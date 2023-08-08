@@ -82,6 +82,10 @@ public class Client {
     @JsonManagedReference
     private Set<ClientHasPlan> clientPlans = new HashSet<>();
 
+    @OneToMany(mappedBy = "client",cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JsonManagedReference
+    private Set<Entry> entries = new HashSet<>();
+
     public Client() {
     }
 
@@ -128,7 +132,7 @@ public class Client {
         if (this == o) return true;
         if (!(o instanceof Client)) return false;
         Client client = (Client) o;
-        return isActive == client.isActive && Objects.equals(clientId, client.clientId) && Objects.equals(firstName, client.firstName) && Objects.equals(lastName, client.lastName) && Objects.equals(email, client.email) && Objects.equals(phoneNumber, client.phoneNumber) && Objects.equals(emergencyPhoneNumber, client.emergencyPhoneNumber) && Objects.equals(birthday, client.birthday) && gender == client.gender && Objects.equals(streetAddress, client.streetAddress) && Objects.equals(addressNumber, client.addressNumber) && Objects.equals(colony, client.colony) && Objects.equals(city, client.city) && Objects.equals(state, client.state) && Objects.equals(zipCode, client.zipCode) && Objects.equals(clientPlans, client.clientPlans);
+        return isActive == client.isActive && Objects.equals(clientId, client.clientId) && Objects.equals(firstName, client.firstName) && Objects.equals(lastName, client.lastName) && Objects.equals(email, client.email) && Objects.equals(phoneNumber, client.phoneNumber) && Objects.equals(emergencyPhoneNumber, client.emergencyPhoneNumber) && Objects.equals(birthday, client.birthday) && gender == client.gender && Objects.equals(streetAddress, client.streetAddress) && Objects.equals(addressNumber, client.addressNumber) && Objects.equals(colony, client.colony) && Objects.equals(city, client.city) && Objects.equals(state, client.state) && Objects.equals(zipCode, client.zipCode) && Objects.equals(clientPlans, client.clientPlans) && Objects.equals(entries, client.entries);
     }
 
     @Transactional
@@ -284,5 +288,13 @@ public class Client {
 
     public void setClientPlans(Set<ClientHasPlan> clientPlans) {
         this.clientPlans = clientPlans;
+    }
+
+    public Set<Entry> getEntries() {
+        return entries;
+    }
+
+    public void setEntries(Set<Entry> entries) {
+        this.entries = entries;
     }
 }

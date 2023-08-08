@@ -75,13 +75,10 @@ public class ClientHasPlanServiceImpl implements ClientHasPlanService {
 
     @Override
     public List<ClientHasPlanDTO> getAllClientHasPlansDTO() {
-        // Obtenemos la lista de ClientHasPlanDTO
         List<ClientHasPlanDTO> list = clientHasPlanMapper.fromClientHasPlans(clientHasPlanDao.findAll());
-        // Ordenamos la lista de forma descendente por el contractId
         Collections.sort(list, new Comparator<ClientHasPlanDTO>() {
             @Override
             public int compare(ClientHasPlanDTO o1, ClientHasPlanDTO o2) {
-                // Comparamos los contractId de forma inversa
                 return o2.getContractId().compareTo(o1.getContractId());
             }
         });
